@@ -9,6 +9,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@ionic/react": "6.7.0",
+    "axios": "^1.4.0",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

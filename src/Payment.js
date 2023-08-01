@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Payment.css";
+import axios from "axios";
 
 const PaymentPage = () => {
+
+
+const [banking, setBanking] = useState([]);
+
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState("bankAccount");
   const [bankAccount, setBankAccount] = useState({
     ifscCode: "",
     accountHolderName: "",
     accountNumber: "",
+    banks:"",
   });
 
   const [upi, setUpi] = useState("");
@@ -34,6 +40,9 @@ const PaymentPage = () => {
     const { name, value } = event.target;
     setCreditCard({ ...creditCard, [name]: value });
   };
+  const handleChangebanks =( event) =>{
+    setBanking(event.target.value);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,9 +55,48 @@ const PaymentPage = () => {
     });
   };
 
-  return (
-    <div className="container">
+
+//  useEffect (() =>{
+
+//   const headers = {
+//     Authorization: 'Basic cnpwX3Rlc3RfU1p2a3hIOGlGT01mSmI6'
+//   }
+//   fetch("https://api.razorpay.com/v1/methods", {method: "GET", headers})
+//   .then((res) => res.json())
+//   .then((data) =>setData(data))
+//   .catch((error) => console.log(error));
+//  },[]);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const headers = {
+        'Authorization': 'Basic cnpwX3Rlc3RfU1p2a3hIOGlGT01mSmI6'
+      };
+
+      const response = await fetch('https://api.example.com/data', { headers });
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+      const data = await response.json();
+      console.log(data,'mnnnnnnnnnnnnnnnnnn')
+      setBanking(data);
+    } catch (error) {
+     
+    }
+  };
+
+  fetchData();
+}, []);
+
+ const listofBank =  banking.filter((banking) => banking.netbanking.toString() === (banking))
+
+ 
+ 
+ return (
+   <div className="container">
       <h1>Payment Page</h1>
+      { console.log(listofBank,'hhhhhhhhhhhhhhhh')}
       <form onSubmit={handleSubmit}>
         {/* payment method */}
         <div className="field-group">
@@ -117,6 +165,10 @@ const PaymentPage = () => {
               value={bankAccount.accountNumber}
               onChange={handleBankAccountChange}
             />
+           <select>
+          <option value="">Select a your Bank</option>
+         
+        </select>
           </div>
         )}
 
