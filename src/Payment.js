@@ -2,22 +2,23 @@ import React, { useState } from "react";
 import "./Payment.css";
 
 const PaymentPage = () => {
-  const [paymentMethod, setPaymentMethod] = useState("bankAccount");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState("bankAccount");
   const [bankAccount, setBankAccount] = useState({
     ifscCode: "",
     accountHolderName: "",
-    accountNumber: ""
+    accountNumber: "",
   });
 
   const [upi, setUpi] = useState("");
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
     expiryDate: "",
-    cvv: ""
+    cvv: "",
   });
 
   const handlePaymentMethodChange = (event) => {
-    setPaymentMethod(event.target.value);
+    setSelectedPaymentMethod(event.target.value);
   };
 
   const handleBankAccountChange = (event) => {
@@ -39,10 +40,9 @@ const PaymentPage = () => {
     // Handle payment submission based on selected paymentMethod and the provided data
     // For demonstration purposes, you can log the data or send it to a backend server.
     console.log({
-      paymentMethod,
       bankAccount,
       upi,
-      creditCard
+      creditCard,
     });
   };
 
@@ -56,7 +56,7 @@ const PaymentPage = () => {
             <input
               type="radio"
               value="bankAccount"
-              checked={paymentMethod === "bankAccount"}
+              checked={selectedPaymentMethod === "bankAccount"}
               onChange={handlePaymentMethodChange}
             />
             Bank Account
@@ -64,31 +64,38 @@ const PaymentPage = () => {
         </div>
 
         {/* Upi mwethods */}
-        <div className="field-group bank-fields">
+        {/* <div className="field-group bank-fields"> */}
+        <div className="field-group">
           <label>
             <input
               type="radio"
               value="upi"
-              checked={paymentMethod === "upi"}
+              checked={selectedPaymentMethod === "upi"}
               onChange={handlePaymentMethodChange}
             />
             UPI
           </label>
         </div>
         {/* upi payments */}
-        <div className="field-group upi-fields">
+        {/* <div className="field-group upi-fields"> */}
+        <div className="field-group">
           <label>
             <input
               type="radio"
               value="creditCard"
-              checked={paymentMethod === "creditCard"}
+              checked={selectedPaymentMethod === "creditCard"}
               onChange={handlePaymentMethodChange}
             />
             Credit Card
           </label>
         </div>
-        {paymentMethod === "bankAccount" && (
-          <div className="field-group credit-card-fields">
+
+        {selectedPaymentMethod === "bankAccount" && (
+          <div
+            className={`field-group bank-fields ${
+              selectedPaymentMethod === "bankAccount" ? "show" : "hide"
+            }`}
+          >
             <input
               type="text"
               name="ifscCode"
@@ -113,8 +120,12 @@ const PaymentPage = () => {
           </div>
         )}
 
-        {paymentMethod === "upi" && (
-          <div>
+        {selectedPaymentMethod === "upi" && (
+          <div
+            className={`field-group upi-fields ${
+              selectedPaymentMethod === "upi" ? "show" : "hide"
+            }`}
+          >
             <input
               type="text"
               placeholder="UPI ID"
@@ -124,8 +135,12 @@ const PaymentPage = () => {
           </div>
         )}
 
-        {paymentMethod === "creditCard" && (
-          <div>
+        {selectedPaymentMethod === "creditCard" && (
+          <div
+            className={`field-group credit-card-fields ${
+              selectedPaymentMethod === "creditCard" ? "show" : "hide"
+            }`}
+          >
             <input
               type="text"
               name="cardNumber"
