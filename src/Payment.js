@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { PiBank } from 'react-icons/fa';
+import { HiLibrary } from "react-icons/hi";
 import "./Payment.css";
 import axios from "axios";
-import Creditcard from "./assets/images/Creditcard.png"
-import Cvv from "./assets/images/cvv.png"
-import expiredDate from "./assets/images/expiredDate.png"
+import Creditcard from "./assets/images/Creditcard.png";
+import Cvv from "./assets/images/cvv.png";
+import expiredDate from "./assets/images/expiredDate.png";
+import Upi from "./assets/images/Upi.png";
+import Bank from "./assets/images/Bank.png";
+import Bank1 from "./assets/images/Bank1.png";
 
 
 const PaymentPage = () => {
@@ -57,17 +62,6 @@ const PaymentPage = () => {
       creditCard,
     });
   };
-
-  //  useEffect (() =>{
-
-  //   const headers = {
-  //     Authorization: 'Basic cnpwX3Rlc3RfU1p2a3hIOGlGT01mSmI6'
-  //   }
-  //   fetch("https://api.razorpay.com/v1/methods", {method: "GET", headers})
-  //   .then((res) => res.json())
-  //   .then((data) =>setData(data))
-  //   .catch((error) => console.log(error));
-  //  },[]);
 
   useEffect(() => {
     const fetchBankList = async () => {
@@ -143,9 +137,10 @@ const PaymentPage = () => {
               selectedPaymentMethod === "bankAccount" ? "show" : "hide"
             }`}
           >
-            <div>
+            <div >
               <p>Select Your Bank</p>
-              <select name="doctype" id="doctype">
+              <img src={Bank1}  height="25" alt="Preview" />
+              <select name="doctype" id="doctype" nbv n>
                 <option value="">Select your Bank</option>
                 <option value="AIRP">Airtel Payments Bank</option>
                 <option value="BARB_R">Bank of Baroda</option>
@@ -186,7 +181,8 @@ const PaymentPage = () => {
               </select>
             </div>
             <div>
-              <p>Enter Your AccountNumber</p>
+              <p>Enter Your Account Number</p>
+              <img src={Bank1} height="25" alt="Preview" />
               <input
                 type="text"
                 name="accountNumber"
@@ -196,7 +192,8 @@ const PaymentPage = () => {
               />
             </div>
             <div>
-              <p>Enter Your AccountHolder Name</p>
+              <p>Enter Your Account Holder Name</p>
+              <img src={Bank1} height="25" alt="Preview" />
               <input
                 type="text"
                 name="accountHolderName"
@@ -206,7 +203,9 @@ const PaymentPage = () => {
               />
             </div>
             <div>
-              <p>Enter Your IFSC CODE</p>
+              <p  >Enter Your IFSC CODE</p>
+              <div className="baning">
+              <img src={Bank1} height="25" alt="Preview" />
               <input
                 type="text"
                 name="ifscCode"
@@ -214,6 +213,7 @@ const PaymentPage = () => {
                 value={bankAccount.ifscCode}
                 onChange={handleBankAccountChange}
               />
+              </div>
             </div>
           </div>
         )}
@@ -225,9 +225,9 @@ const PaymentPage = () => {
             }`}
           >
             <div>
-              {" "}
               <p>Enter Your UPI ID</p>
             </div>
+            <img src={Upi} height="25" alt="Preview" />
             <input
               type="text"
               placeholder="UPI ID"
@@ -250,23 +250,23 @@ const PaymentPage = () => {
             <input
               type="text"
               name="cardNumber"
-              placeholder="Card Number"
+              placeholder="Enter your 16 Digit Number"
               value={creditCard.cardNumber}
               onChange={handleCreditCardChange}
+              className="input"
             />
             <div>
               <p>Enter Your Card Expiry Date</p>
             </div>
             <div>
- 
-            <img src={expiredDate} alt="Preview" />
-            <input
-              type="text"
-              name="expiryDate"
-              placeholder="Expiry Date (MM/YY)"
-              value={creditCard.expiryDate}
-              onChange={handleCreditCardChange}
-            />
+              <img src={expiredDate} alt="Preview" />
+              <input
+                type="text"
+                name="expiryDate"
+                placeholder="Expiry Date (MM/YY)"
+                value={creditCard.expiryDate}
+                onChange={handleCreditCardChange}
+              />
             </div>
             <div>
               <p>Enter Your Card CVV</p>
