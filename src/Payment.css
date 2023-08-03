@@ -129,10 +129,10 @@ input[type="radio"] {
 }
 
 button {
-  background: #5469d4;
+  background: #27ae60;
   font-family: Arial, sans-serif;
   color: #ffffff;
-  border-radius: 4px;
+  border-radius: 10px;
   border: 0;
   padding: 12px 16px;
   font-size: 16px;

@@ -27,6 +27,7 @@ const PaymentPage = () => {
   const [upi, setUpi] = useState("");
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
+    cardHolderName:"",
     expiryDate: "",
     cvv: "",
   });
@@ -139,7 +140,7 @@ const PaymentPage = () => {
           >
             <div >
               <p>Select Your Bank</p>
-              <img src={Bank1}  height="25" alt="Preview" />
+              <img src={Bank}  height="25" alt="Preview" />
               <select name="doctype" id="doctype" nbv n>
                 <option value="">Select your Bank</option>
                 <option value="AIRP">Airtel Payments Bank</option>
@@ -149,6 +150,7 @@ const PaymentPage = () => {
                 <option value="CSBK">Catholic Syrian Bank</option>
                 <option value="CBIN">Central Bank of India</option>
                 <option value="DCBL">DCB Bank</option>
+                <option value="DCC">DCC Bank</option>
                 <option value="DEUT">Deutsche Bank</option>
                 <option value="DLXB">Dhanlaxmi Bank</option>
                 <option value="ESFB">Equitas Small Finance Bank</option>
@@ -166,6 +168,7 @@ const PaymentPage = () => {
                 <option value="LVB">Lakshmi Vilas Bank</option>
                 <option value="NSPB">NSDL Payments Bank</option>
                 <option value="PSIB">Punjab & Sind Bank</option>
+                <option value="PKGB">Pragathi Gramina Bank</option>
                 <option value="PUNB_R">Punjab National Bank</option>
                 <option value="RATN">RBL Bank</option>
                 <option value="SVCB">SVC Co-Operative Bank Ltd</option>
@@ -182,7 +185,7 @@ const PaymentPage = () => {
             </div>
             <div>
               <p>Enter Your Account Number</p>
-              <img src={Bank1} height="25" alt="Preview" />
+              <img src={Bank} height="25" alt="Preview" />
               <input
                 type="text"
                 name="accountNumber"
@@ -193,7 +196,7 @@ const PaymentPage = () => {
             </div>
             <div>
               <p>Enter Your Account Holder Name</p>
-              <img src={Bank1} height="25" alt="Preview" />
+              <img src={Bank} height="25" alt="Preview" />
               <input
                 type="text"
                 name="accountHolderName"
@@ -205,7 +208,7 @@ const PaymentPage = () => {
             <div>
               <p  >Enter Your IFSC CODE</p>
               <div className="baning">
-              <img src={Bank1} height="25" alt="Preview" />
+              <img src={Bank} height="25" alt="Preview" />
               <input
                 type="text"
                 name="ifscCode"
@@ -245,7 +248,6 @@ const PaymentPage = () => {
           >
             <div>
               <p>Enter Your Card Number</p>
-            </div>
             <img src={Creditcard} height="25" alt="Preview" />
             <input
               type="text"
@@ -255,6 +257,21 @@ const PaymentPage = () => {
               onChange={handleCreditCardChange}
               className="input"
             />
+            </div>
+
+            <div>
+              <p>Enter Card Holder Name</p>
+            <img src={Creditcard} height="25" alt="Preview" />
+            <input
+              type="text"
+              name="cardHolderName"
+              placeholder="Enter Card Holder Name"
+              value={creditCard.cardHolderName}
+              onChange={handleCreditCardChange}
+              className="input"
+            />
+            </div>
+
             <div>
               <p>Enter Your Card Expiry Date</p>
             </div>
