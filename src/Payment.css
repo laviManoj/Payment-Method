@@ -87,7 +87,7 @@ label {
   font-weight: 600;
 }
 
-input[type="text"],
+input[type="text"], 
 input[type="number"] {
   padding: 10px;
   border: 1px solid #ccc;
@@ -96,23 +96,31 @@ input[type="number"] {
   margin-top: 10px;
 }
 
+
 Select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin-right: 50px;
-  width: 73%;
+  margin-left: 0px;
+  width: 68%;
+  margin-top: -63px;
 }
 
 .container img {
-  width: 60px; /* Set the desired width for the image */
-  height: 50px; /* Set the desired height for the image */
-  margin-right: 10px; /* Optional margin between the image and input */
+  width: 60px;
+  height: 38px;
+  margin-right: 10px;
+  margin-bottom: -14px;
 }
 
+/* .bank-select{
+  margin-bottom: 20px;
+} */
 
-
+.baning{
+  margin-top: 10px;
+}
  
 
 
