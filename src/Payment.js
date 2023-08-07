@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PiBank } from 'react-icons/fa';
+import { PiBank } from "react-icons/fa";
 import { HiLibrary } from "react-icons/hi";
 import "./Payment.css";
 import axios from "axios";
@@ -9,7 +9,7 @@ import expiredDate from "./assets/images/expiredDate.png";
 import Upi from "./assets/images/Upi.png";
 import Bank from "./assets/images/Bank.png";
 import Bank1 from "./assets/images/Bank1.png";
-
+import "bootstrap/dist/css/bootstrap.css";
 
 const PaymentPage = () => {
   const [banking, setBanking] = useState([]);
@@ -27,7 +27,7 @@ const PaymentPage = () => {
   const [upi, setUpi] = useState("");
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
-    cardHolderName:"",
+    cardHolderName: "",
     expiryDate: "",
     cvv: "",
   });
@@ -89,59 +89,51 @@ const PaymentPage = () => {
   }, []);
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <h1>Payment Page</h1>
-        {/* payment method */}
-        <div className="field-group">
-          <label>
+      <div className="container">
+        <form  className="mainform"onSubmit={handleSubmit}>
+          <h1>Payment Page</h1>
+          <div >
+          <div>
             <input
               type="radio"
-              value="bankAccount"
-              checked={selectedPaymentMethod === "bankAccount"}
-              onChange={handlePaymentMethodChange}
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal1"
+              data-whatever="@mdo"
             />
-            Bank Account
-          </label>
-        </div>
-
-        {/* Upi mwethods */}
-        {/* <div className="field-group bank-fields"> */}
-        <div className="field-group">
-          <label>
-            <input
-              type="radio"
-              value="upi"
-              checked={selectedPaymentMethod === "upi"}
-              onChange={handlePaymentMethodChange}
-            />
-            UPI
-          </label>
-        </div>
-        {/* upi payments */}
-        {/* <div className="field-group upi-fields"> */}
-        <div className="field-group">
-          <label>
-            <input
-              type="radio"
-              value="creditCard"
-              checked={selectedPaymentMethod === "creditCard"}
-              onChange={handlePaymentMethodChange}
-            />
-            Credit Card
-          </label>
-        </div>
-
-        {selectedPaymentMethod === "bankAccount" && (
-          <div
-            className={`field-group bank-fields ${
-              selectedPaymentMethod === "bankAccount" ? "show" : "hide"
-            }`}
-          >
-            <div >
-              <p>Select Your Bank</p>
-              <img src={Bank}  height="25" alt="Preview" />
-              <select name="doctype" id="doctype" nbv n>
+            
+           Bank Account
+            <div
+              class="modal fade"
+              id="exampleModal1"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                     Account Details
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">
+                          Select Bank
+                        </label>
+                        <div>
+                        <select name="doctype" class="form-control" id="recipient-name">
                 <option value="">Select your Bank</option>
                 <option value="AIRP">Airtel Payments Bank</option>
                 <option value="BARB_R">Bank of Baroda</option>
@@ -182,127 +174,218 @@ const PaymentPage = () => {
                 <option value="VJB">Vijay Bank</option>
                 <option value="YB">Yes Bank</option>
               </select>
-            </div>
-            <div>
-              <p>Enter Your Account Number</p>
-              <img src={Bank} height="25" alt="Preview" />
-              <input
-                type="text"
-                name="accountNumber"
-                placeholder="Account Number"
-                value={bankAccount.accountNumber}
-                onChange={handleBankAccountChange}
-              />
-            </div>
-            <div>
-              <p>Enter Your Account Holder Name</p>
-              <img src={Bank} height="25" alt="Preview" />
-              <input
-                type="text"
-                name="accountHolderName"
-                placeholder="Account Holder Name"
-                value={bankAccount.accountHolderName}
-                onChange={handleBankAccountChange}
-              />
-            </div>
-            <div>
-              <p  >Enter Your IFSC CODE</p>
-              <div className="baning">
-              <img src={Bank} height="25" alt="Preview" />
-              <input
-                type="text"
-                name="ifscCode"
-                placeholder="IFSC Code"
-                value={bankAccount.ifscCode}
-                onChange={handleBankAccountChange}
-              />
+              </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">
+                          Account Number
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="recipient-name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">
+                          Account Holder Name
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="recipient-name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">
+                          IFSC Code
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="recipient-name"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Add Bank Details
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        )}
-
-        {selectedPaymentMethod === "upi" && (
-          <div
-            className={`field-group upi-fields ${
-              selectedPaymentMethod === "upi" ? "show" : "hide"
-            }`}
-          >
-            <div>
-              <p>Enter Your UPI ID</p>
-            </div>
-            <img src={Upi} height="25" alt="Preview" />
+          <div>
             <input
-              type="text"
-              placeholder="UPI ID"
-              value={upi}
-              onChange={handleUpiChange}
-            />
+              type="radio"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal2"
+              data-whatever="@mdo"
+            />{" "}
+            UPI ID
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                     UPI Details
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">
+                          UPI ID
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="recipient-name"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Add UPI ID
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        )}
-
-        {selectedPaymentMethod === "creditCard" && (
+          <div>
+          <input
+            type="radio"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModal3"
+            data-whatever="@mdo"
+          />{" "}
+          Credit Card
           <div
-            className={`field-group credit-card-fields ${
-              selectedPaymentMethod === "creditCard" ? "show" : "hide"
-            }`}
+            class="modal fade"
+            id="exampleModal3"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
           >
-            <div>
-              <p>Enter Your Card Number</p>
-            <img src={Creditcard} height="25" alt="Preview" />
-            <input
-              type="text"
-              name="cardNumber"
-              placeholder="Enter your 16 Digit Number"
-              value={creditCard.cardNumber}
-              onChange={handleCreditCardChange}
-              className="input"
-            />
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Card Details
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">
+                        Creditcard Number
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="recipient-name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label">
+                        Creditcard Holder Name
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="recipient-name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label">
+                        CVV
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="recipient-name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label">
+                        Expired Date
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="recipient-name"
+                      />
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Add Card
+                  </button>
+                </div>
+              </div>
             </div>
-
-            <div>
-              <p>Enter Card Holder Name</p>
-            <img src={Creditcard} height="25" alt="Preview" />
-            <input
-              type="text"
-              name="cardHolderName"
-              placeholder="Enter Card Holder Name"
-              value={creditCard.cardHolderName}
-              onChange={handleCreditCardChange}
-              className="input"
-            />
-            </div>
-
-            <div>
-              <p>Enter Your Card Expiry Date</p>
-            </div>
-            <div>
-              <img src={expiredDate} alt="Preview" />
-              <input
-                type="text"
-                name="expiryDate"
-                placeholder="Expiry Date (MM/YY)"
-                value={creditCard.expiryDate}
-                onChange={handleCreditCardChange}
-              />
-            </div>
-            <div>
-              <p>Enter Your Card CVV</p>
-            </div>
-            <img src={Cvv} height="25" alt="Preview" />
-
-            <input
-              type="text"
-              name="cvv"
-              placeholder="CVV"
-              value={creditCard.cvv}
-              onChange={handleCreditCardChange}
-            />
           </div>
-        )}
-
-        <button type="submit">Submit Payment</button>
-      </form>
-    </div>
+          </div>
+          </div>
+          <br/>
+          <br/>
+          <div>
+            <button type="submit">Submit Payment</button>
+          </div>
+        </form>
+      </div>
   );
 };
 
