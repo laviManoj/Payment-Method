@@ -1,0 +1,103 @@
+/* Payment.css */
+
+/* Add your custom styles here */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #A1FFCE;
+  height: 100vh;
+  width: 100vw;
+  margin: 10;
+  background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);
+  background: linear-gradient(to right, #FAFFD1, #A1FFCE);
+
+}
+
+
+
+  form .mainform{
+    width: 80vw;
+    min-width: initial;
+  }
+
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.payment-method input[type="radio"] {
+  margin-right: 10px;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+  font-size: 24px;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 10px 20px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Add more custom styles as needed */

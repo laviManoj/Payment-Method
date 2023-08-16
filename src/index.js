@@ -7,7 +7,7 @@ import Popper from 'popper.js';
 
 
 import App from "./App";
-import Payment from "./Payment";
+import Payment from "./components/Payment";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
