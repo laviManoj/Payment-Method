@@ -66,7 +66,7 @@ const PaymentPage = () => {
 
     console.log(bankAccount, "good coder");
 
-    fetch("http://localhost:5002/addbank", {
+    fetch("http://localhost:5002/paymentMethods", {
       method: "POST",
        headers: {
           "Content-Type": "application/json",
