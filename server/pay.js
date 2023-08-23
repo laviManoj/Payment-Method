@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { Double } = require('bson');
+const { any } = require('prop-types');
 
 const app = express();
 app.use(cors());
@@ -21,8 +23,10 @@ db.once('open', () => {
 
 // Define a schema and model for the data
 const DataSchema = new mongoose.Schema({
-  name: String,
-  email: String
+  accountHolderName: String,
+  banks: String,
+  accountNumber: {type: Number, required: true},
+  ifscCode: String
 });
 
 const DataModel = mongoose.model('Data', DataSchema);
@@ -31,28 +35,38 @@ const DataModel = mongoose.model('Data', DataSchema);
 app.use(bodyParser.json());
 
 // POST route to store data in the database
-app.post('/add-data', async (req, res) => {
+app.post('/paymentMethods', async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const datapayment = req.body;
+    if (!datapayment.accountNumber) {
+      return res.status(400).json({ error: 'accountNumber is required' });
+    }
 
     // Create a new data document
-    const newData = new DataModel({ name, email });
+    const newData = new DataModel(datapayment);
     
-    console.log(newData);
     // Save the document to the database
     await newData.save();
     
+    console.log(newData); // You can choose to log the saved data if needed
+    
     res.status(201).json({ message: 'Data stored successfully' });
   } catch (error) {
+    console.error(error); // Log the error for debugging purposes
     res.status(500).json({ error: 'Error storing data' });
   }
 });
 
-app.get('/get-data',async(req,res)=>{
-
-    const manoj =  await DataModel.find(); 
-        console.log(manoj);
-})
+app.get('/paymentMethods', async (req, res) => {
+  try {
+    // Retrieve all data documents from the database
+    const data = await DataModel.find();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching data' });
+  }
+});
 
 // Start the server
 app.listen(port, () => {
