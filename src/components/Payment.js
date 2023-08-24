@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./Payment.css";
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 Modal.setAppElement("#root");
 
@@ -185,14 +187,14 @@ function Payment() {
 
         <button onClick={closeModal}>Cancel</button>
 
-        <ul>
+        {/* <ul>
         {paymentMethods.map(payment => (
           <li key={payment._id}>Account Number: {payment.accountNumber}</li>
         ))}
         {error && <li>Error fetching data</li>}
-      </ul>
-{/* 
-        <div class="card" style="width: 18rem;">
+      </ul> */}
+
+        <div class="card">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">
@@ -203,7 +205,7 @@ function Payment() {
               Go somewhere
             </a>
           </div>
-        </div> */}
+        </div>
       </Modal>
     </div>
   );
