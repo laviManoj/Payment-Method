@@ -24,6 +24,7 @@
     "react-icons": "^4.10.1",
     "react-modal": "^3.16.1",
     "react-scripts": "5.0.1",
+    "sass": "^1.66.1",
     "webcamjs": "1.0.26"
   },
   "devDependencies": {
