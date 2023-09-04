@@ -29,7 +29,10 @@ function Payment() {
 
   const handleBankAccountChange = (event) => {
     const { name, value } = event.target;
-    setBankDetails({ ...bankDetails, [name]: value });
+    setBankDetails((prevDetails) =>({
+      ...prevDetails,
+      [name]: value,
+    }));
   };
 
   // Validation this fields in bank//
@@ -88,6 +91,11 @@ function Payment() {
       .catch((error) => setError(error));
   }, []);
 
+  const cardStyle = {
+    width: '18rem',
+    /* other CSS properties here */
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -136,66 +144,61 @@ function Payment() {
             </div>
           </div>
         )}
-        {selectedMethod === "bank" && (
-          <div className="payment-form">
-            <h2>Bank Transfer Details</h2>
-            <div className="form-group">
-              <label htmlFor="accountNumber">Account Number</label>
-              <input
-                type="text"
-                id="accountNumber"
-                name="accountNumber"
-                value={bankDetails.accountNumber}
-                onChange={handleBankAccountChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="ifsc">IFSC Code</label>
-              <input
-                type="text"
-                id="ifsc"
-                name="ifscCode"
-                value={bankDetails.ifscCode}
-                onChange={handleBankAccountChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="accountHolder">Account Holder Name</label>
-              <input
-                type="text"
-                id="accountHolder"
-                name="accountHolderName"
-                value={bankDetails.accountHolderName}
-                onChange={handleBankAccountChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="bankName">Bank Name</label>
-              <input
-                type="text"
-                id="bankName"
-                name="banks"
-                value={bankDetails.banks}
-                onChange={handleBankAccountChange}
-              />
-            </div>
+<>
+{console.log(paymentMethods)}
+       <div className="bttns">
+        {/* <button onClick={handleAddBankChange}>Add Details</button> */}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name"/>
           </div>
-        )}
-        <button onClick={handleAddBankChange}>Add Details</button>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <button onClick={closeModal}>Cancel</button>
-
-        {paymentMethods.map((payment) => (
-          <div className="card" >
-            <div class="card-header"><b>BANK Details:</b> {payment.banks}</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">AccountHolderName:{payment.accountHolderName}</li>
-              <li class="list-group-item">AccountNumber:{payment.accountNumber}</li>
-              <li class="list-group-item">IFSC Code:{payment.ifscCode}</li>
+        <button   onClick={closeModal}>Cancel</button>
+        </div>
+        </>
+        {paymentMethods.length > 0 ? (
+        paymentMethods.map((payment, index) => (
+          <div className="card" key={index} style={cardStyle}>
+            <div className="card-header">
+              <b>BANK Details:</b> {payment.banks}
+            </div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">AccountHolderName: {payment.accountHolderName}</li>
+              <li className="list-group-item">AccountNumber: {payment.accountNumber}</li>
+              <li className="list-group-item">IFSC Code: {payment.ifscCode}</li>
             </ul>
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="card" >
+        <p className="paragraph">No payment methods available.</p>
+        </div>
+      )}
+      {error && <p>Error loading payment methods: {error.message}</p>}
+      
 
 {/* <div class="container mt-4">
     <div class="row">

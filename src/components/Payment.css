@@ -39,11 +39,23 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+.bttns {
+  margin-left: 1530px;
+
+}
+/* button.button2 {
+  margin-left: 780px;
+
+} */
 
 button:hover {
   background-color: #0056b3;
 }
 
+p.paragraph{
+  text-align: center;
+
+}
 .modal {
   position: absolute;
   top: 50%;
