@@ -144,12 +144,12 @@ function Payment() {
             </div>
           </div>
         )}
-<>
-{console.log(paymentMethods)}
-       <div className="bttns">
+
+<div>
+       
         {/* <button onClick={handleAddBankChange}>Add Details</button> */}
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">ADD Card</button>
+        <div class="modal fade" id="exampleModal" tabIndex="2" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -177,8 +177,8 @@ function Payment() {
 </div>
 
         <button   onClick={closeModal}>Cancel</button>
+       
         </div>
-        </>
         {paymentMethods.length > 0 ? (
         paymentMethods.map((payment, index) => (
           <div className="card" key={index} style={cardStyle}>
